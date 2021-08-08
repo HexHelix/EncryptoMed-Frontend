@@ -1,0 +1,60 @@
+import React, { useEffect, useState } from "react";
+import { EthersSet } from "./component/EthersSet";
+import "./App.css";
+
+const App = () => {
+  const [inputs, setInputs] = useState("");
+  const [numValue, setNumValue] = useState("");
+  const [medicine, setMedicine] = useState("");
+  const [rdata, setData] = useState([]);
+  
+
+  const handleClick = () => {
+    setInputs({ numValue: numValue, medicine: medicine });
+    setNumValue('');
+    setMedicine('');
+  };
+
+   const { data, loading } = EthersSet(inputs);
+   useEffect(()=>{
+        setData(data);
+        console.log(data);
+   },[data])
+  
+
+  
+
+  return (
+    <div className="App">
+      
+      <div className="container1">
+      <div>{loading ? "loading" : rdata||console.log(data)}</div>
+        <form>
+          <input
+            onChange={(e) => setNumValue(e.target.value)}
+            placeholder="ID"
+            value={numValue}
+            type="number"
+            required
+          />
+          <br />
+          <input
+            onChange={(e) => setMedicine(e.target.value)}
+            placeholder="medicine name"
+            value={medicine}
+            type="string"
+          />
+          <br />
+          <input type="button" value="Submit" onClick={handleClick} />
+          <br />
+        </form>
+        
+        
+
+        
+      </div>
+    </div>
+  );
+};
+
+export default App;

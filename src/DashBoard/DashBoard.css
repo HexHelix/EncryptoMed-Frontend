@@ -1,0 +1,43 @@
+.night-sky {
+	display: block;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	z-index: -1;
+	background: radial-gradient(at center bottom, #272762, #000000);
+}
+.shooting-stars {
+	z-index: 10;
+	width: 5px;
+	height: 85px;
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background: linear-gradient(to top, rgba(255, 255, 255, 0), white);
+	animation: animShootingStar 10s linear infinite;
+}
+ @keyframes animStar {
+ from {
+ transform: translateY(0px);
+}
+ to {
+ transform: translateY(-2560px) translateX(-2560px);
+}
+}
+@keyframes animShootingStar {
+ from {
+ transform: translateY(0px) translateX(0px) rotate(-45deg);
+ opacity: 1;
+ height: 5px;
+}
+ to {
+ transform: translateY(-2560px) translateX(-2560px) rotate(-45deg);
+ opacity: 1;
+ height: 800px;
+}
+}
+
+body {background:black;}
+h1 {color:white}

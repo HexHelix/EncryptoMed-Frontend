@@ -41,12 +41,12 @@ const _nav = [
     _children: [
       {
         _tag: "CSidebarNavItem",
-        name: "Add Medicine",
+        name: "Generate Qr",
         to: "/qr/create",
       },
       {
         _tag: "CSidebarNavItem",
-        name: "View Medicine",
+        name: "Verify Medicine",
         to: "/qr/scan",
       },
       

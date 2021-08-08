@@ -90,7 +90,7 @@ const routes = [
 
   { path: '/qr', name: 'QR', component: generate_qr, exact: true },
   { path: '/qr/create', name: 'Generate Qr Code', component: generate_qr },
-  { path: '/qr/scan', name: 'Verify Medicine', component: scan_qr },
+  { path: '/qr/scan', name: 'Verify Qr Code', component: scan_qr },
 ];
 
 export default routes;

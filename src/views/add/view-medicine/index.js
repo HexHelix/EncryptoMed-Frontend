@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { set, get } from '../add-medicine/Items'
 
 import {
   CCard,
@@ -14,6 +15,25 @@ import {
 
 
 const Index = props => {
+  var data = get();
+
+  if (data !== undefined){
+    var objData=  data.map((d)=>{
+      return {MedicineName:d[0],
+        MedicineId:d[1],
+        status: 'Available',
+        Patchno:d[2],
+        Creator: d[3],
+        Productiondate:d[4],
+        Rate:d[5],
+        ManfucturerLocation:d[6],
+        ManfucturerInfo:d[7]}
+      
+    })
+  }
+  
+
+  console.log(objData);
     const usersData = [
         {id: 0, name: 'John Doe', registered: '2018/01/01', role: 'Guest', status: 'Pending'},
         {id: 1, name: 'Samppa Nori', registered: '2018/01/01', role: 'Member', status: 'Active'},
@@ -58,22 +78,20 @@ const Index = props => {
     
     
       const fields = [
-        { key: 'name', _style: { width: '40%'} },
-        'registered',
-        { key: 'role', _style: { width: '20%'} },
-        { key: 'status', _style: { width: '20%'} },
-        {
-          key: 'show_details',
-          label: '',
-          _style: { width: '1%' },
-          sorter: false,
-          filter: false
-        }
+        { key: 'MedicineName', _style: { width: '10%'} },
+        { key: 'MedicineId', _style: { width: '10%'} },
+        { key: 'status', _style: { width: '10%'} },
+        { key: 'Patchno', _style: { width: '10%'} },
+        { key: 'Creator', _style: { width: '30%'} },
+        { key: 'Productiondate', _style: { width: '10%'} },
+        { key: 'Rate', _style: { width: '10%'} },
+        { key: 'ManfucturerLocation', _style: { width: '10%'} },
+        { key: 'ManfucturerInfo', _style: { width: '10%'} }
       ]
     
       const getBadge = (status)=>{
         switch (status) {
-          case 'Active': return 'success'
+          case 'Available': return 'success'
           case 'Inactive': return 'secondary'
           case 'Pending': return 'warning'
           case 'Banned': return 'danger'
@@ -81,12 +99,11 @@ const Index = props => {
         }
       }
     
-      return (
-        <CCard>
+      return <>{(data !== undefined)?<CCard>
         <CCardHeader>Table</CCardHeader>
         <CCardBody>
         <CDataTable
-          items={usersData}
+          items={objData}
           fields={fields}
           columnFilter
           tableFilter
@@ -143,9 +160,10 @@ const Index = props => {
           }}
         />
         </CCardBody>
-        </CCard>
+        </CCard>:<h1>Please reload table in Add section</h1>}</>
         
-      )
+        
+      
       
       
 }
